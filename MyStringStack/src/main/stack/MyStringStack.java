@@ -23,7 +23,23 @@ public class MyStringStack {
 				insert += 1;
 				break;
 			}
+			i++;
 		}
-		stack[insert] = s1;
+		stack[insert - 1] = s1;
+	}
+
+	public String pop() {
+		int i = 0;
+		int pop = 0;
+		String result = null;
+		while (stack[i] != null) {
+			pop = i;
+			i++;
+			result = stack[pop];
+		}
+		stack[pop] = null;
+		if (i == 0)
+			throw new IndexOutOfBoundsException("You popped an empty stack");
+		return result;
 	}
 }

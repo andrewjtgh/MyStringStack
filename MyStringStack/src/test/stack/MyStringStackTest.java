@@ -1,7 +1,9 @@
 package stack;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,5 +35,23 @@ public class MyStringStackTest {
 		stack.push(s1);
 		stack.push(s2);
 		assertFalse("Stack is still empty after push", stack.isEmpty());
+	}
+
+	@Test
+	public void popped_is_same_as_last_pushed() {
+		MyStringStack stack = new MyStringStack();
+		stack.push(s1);
+		stack.push(s2);
+		assertSame(stack.pop(), s2);
+	}
+
+	@Test
+	public void popping_empty_stack_generate_IndexOutOfBoundException() {
+		MyStringStack stack = new MyStringStack();
+		try {
+			stack.pop();
+			fail();
+		} catch (IndexOutOfBoundsException ex) {
+		}
 	}
 }
