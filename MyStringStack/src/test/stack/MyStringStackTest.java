@@ -42,7 +42,7 @@ public class MyStringStackTest {
 		MyStringStack stack = new MyStringStack();
 		stack.push(s1);
 		stack.push(s2);
-		assertSame(stack.pop(), s2);
+		assertSame("Pop should return the last pushed object", stack.pop(), s2);
 	}
 
 	@Test
@@ -54,4 +54,38 @@ public class MyStringStackTest {
 		} catch (IndexOutOfBoundsException ex) {
 		}
 	}
+
+	@Test
+	public void pushing_null_element_is_still_empty() {
+		MyStringStack stack = new MyStringStack();
+		stack.push(null);
+		assertTrue(stack.isEmpty());
+	}
+
+	@Test
+	public void pushing_null_element_pop_last_element() {
+		MyStringStack stack = new MyStringStack();
+		stack.push(s1);
+		stack.push(null);
+		assertSame(s1, stack.pop());
+	}
+
+	@Test
+	public void reverse_order_popping() {
+		MyStringStack stack = new MyStringStack();
+		stack.push(s1);
+		stack.push(s2);
+		assertSame(s2, stack.pop());
+		assertSame(s1, stack.pop());
+	}
+
+	@Test
+	public void clear_stack_make_it_empty() {
+		MyStringStack stack = new MyStringStack();
+		stack.push(s1);
+		stack.push(s2);
+		stack.clear();
+		assertTrue(stack.isEmpty());
+	}
+
 }

@@ -20,12 +20,14 @@ public class MyStringStack {
 		int insert = 0;
 		while (i < stack.length) {
 			if (stack[i] == null) {
-				insert += 1;
 				break;
+			} else {
+				insert += 1;
 			}
 			i++;
 		}
-		stack[insert - 1] = s1;
+		if (s1 != null)
+			stack[insert] = s1;
 	}
 
 	public String pop() {
@@ -41,5 +43,13 @@ public class MyStringStack {
 		if (i == 0)
 			throw new IndexOutOfBoundsException("You popped an empty stack");
 		return result;
+	}
+
+	public void clear() {
+		int i = 0;
+		while (i < stack.length) {
+			stack[i] = null;
+			i++;
+		}
 	}
 }
